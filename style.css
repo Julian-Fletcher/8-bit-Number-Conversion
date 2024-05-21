@@ -9,6 +9,10 @@ body{
     padding: 15px;
     /*border: 2px solid blue;*/
     justify-content: center;
+    
+}
+
+#game{
     display: none;
 }
 
@@ -18,7 +22,7 @@ body{
     text-align: center;
     border: 1px solid #CFCFCF;
     border-radius: 8px;
-    padding: 25px;
+    padding: 25px 0px 25px 0px;
     margin-top: 25px;
 }
 
@@ -49,7 +53,9 @@ input[type=text]:focus{
     border: 1px solid black;
     border-radius: 20px;
     display: block;
+    text-align: center;
 }
+
 
 .button-grid{
     display: grid;
@@ -63,16 +69,55 @@ input[type=text]:focus{
     text-align: center;
 }
 
-.mode-button{
+button{
     padding: 20px;
     border-radius: 10px;
 
 }
 
-.mode-button:hover {
+button:hover {
     background-color: gray;
 }
 
-#menu-div{
-    text-align: center;
+
+.display-container {
+    width: 100%;
+}
+
+#top-bar{
+    
+}
+
+@media screen and (max-width: 768px){
+    .button-grid{
+        display: block;
+        width: 100%;
+    }
+
+    #menu-div{
+        width: auto;
+        height: auto;
+    }
+
+
+    #game{
+        width: 100%;
+    }
+
+    #main{
+        width: 100%;
+        padding: 0px;
+    }
+
+    #top-bar{
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #top-bar *{
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+    }
 }

@@ -1,18 +1,18 @@
 // Variables
-let playerAnswer;
+let playerAnswer = null;
 let incorrect = 0;
 let correct = 0;
-let rounds = 10;
 let gamemode = null;
 let number = null;
-let label = document.getElementById("number");  // P element number will be shown in
 
 let startBase = null;   // Base to start in
 let endBase = null;     // Base to convert to
 
 // DOM elements
+const label = document.getElementById("number");  // P element number will be shown in
+
 const menu = document.getElementById("menu-div"); // Main menu div
-const game = document.getElementById("main");     // Game div
+const game = document.getElementById("game");     // Game div
 
 const form = document.getElementById("inputForm");
 const userInput = document.getElementById("userAnswer");
@@ -20,6 +20,10 @@ const userInput = document.getElementById("userAnswer");
 const correctElement = document.getElementById("correct");
 const incorrectElement = document.getElementById("incorrect");
 
+const modeElement = document.getElementById("mode");
+
+
+// Handles user submissions
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -31,10 +35,14 @@ form.addEventListener("submit", function(event) {
     userInput.value = "";
 })
 
+// Compares user answer to correct answer by converting both to base 10 and comparing
 function checkAnswer(){
+
+    // Convert user and correct answer to base 10
     let correctAnswer = parseInt(number, startBase);
     let input = parseInt(playerAnswer, endBase);
 
+    // Comparisions
     if(correctAnswer === input){
         correct++;
         console.log(correct);
@@ -45,6 +53,8 @@ function checkAnswer(){
         console.log(incorrect);
         incorrectElement.innerHTML = 'Incorrect: ' + String(incorrect);
     }
+    // Get new number
+    changeNum(startBase);
 }
 
 
@@ -53,8 +63,29 @@ function setMode(mode, startbase, endbase){
     startBase = startbase;
     endBase = endbase;
     gamemode = mode;
-    console.log('Start base: ' + startBase + ' end base ' + endBase);
-    console.log(gamemode);
+
+    // Set gamemode element text
+    switch(mode){
+        case 0:
+            modeElement.innerHTML = "Mode: Binary to Hexadecimal";
+            break;
+        case 1:
+            modeElement.innerHTML = "Mode: Binary to Decimal";
+            break;
+        case 2:
+            modeElement.innerHTML = "Mode: Hexadecimal to Binary";
+            break;
+        case 3:
+            modeElement.innerHTML = "Mode: Hexadecimal to Decimal";
+            break;
+        case 4:
+            modeElement.innerHTML = "Mode: Decimal to Hexadecimal";
+            break;
+        case 5:
+            modeElement.innerHTML = "Mode: Decimal to Binary";
+            break;
+    }
+    startGame();
 }
 
 
@@ -67,7 +98,7 @@ function startGame(){
     }
        // Hide the menu div and display the game div
     menu.style.display = "none";
-    main.style.display = "block";    
+    game.style.display = "block";    
     changeNum(startBase);
 }
 
@@ -76,16 +107,16 @@ function startGame(){
 // Generates a random number in one of the three bases and displays it
 function changeNum(base){
     
+    // For base 10, just display the number
     if(base === 10){
         number = Math.floor(Math.random() * 256);
-        document.getElementById("number").innerHTML = String(number);
+        label.innerHTML = String(number);
     }
 
 
     else{
         number = Math.floor(Math.random() * 256);
         number = (number.toString(base)).toUpperCase(); // Convert to base and make sure hex will be uppercase
-        console.log(number, base);
         
         // Ensures hex string is always 2 characters
         if(base === 16 && number.length === 1){
@@ -111,22 +142,22 @@ function changeNum(base){
             number = str;
         }
 
-        document.getElementById("number").innerHTML = String(number);
+        // Update label with number and its base
+        const subscript = document.createElement("sub");
+        subscript.textContent = String(base);
+
+        label.innerHTML = String(number);
+
+        label.appendChild(subscript);
+
     }
 }
 
-
-
-
-/*
-
-1. Select Game mode
-2. ** Select rounds later **
-3. Game Loop
-3a. Generate & Display Number
-3b. Compare user input to number
-3c. Update correct / incorrect answers
-3d. Pick New Number
-
-
- */
+function returnToMenu(){
+    menu.style.display = "block";
+    game.style.display = "none"; 
+    correct = 0;
+    incorrect = 0;
+    startBase = null;
+    endBase = null;
+}

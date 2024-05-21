@@ -20,43 +20,41 @@
             <div class="grid-item"><button class="mode-button" onclick="setMode(5, 10, 2)">Decimal to Binary</a></button></div>
         </div>
 
-        <button id="startGame" onclick="startGame()">Start Game</button>
+        <!-- <button id="startGame" onclick="startGame()">Start Game</button> -->
 
     </div>
 
-    
-    <div id="main">
-        <div class="display-container">
-            <p id="number"> 0000 </p>
-        </div>
-    
-        <div class="submit-container">
-            <form id="inputForm" novalidate>
-                <input type="text" id="userAnswer" placeholder="Answer">
-                <button type="submit">Submit Answer</button>
-            </form>
-        </div>
+    <div id="game">
+        <div id="top-bar">
+            <button onclick="returnToMenu()">Return to Menu</button>
+            <a id="mode">Mode: </a>
 
-        <div>
-            <h3>Score:</h3>
-            <p id="correct">Correct: 0</p>
-            <p id="incorrect">Incorrect: 0</p>
+        </div>
+        
+        <div id="main">
+           
+            <p id="number">0000<sub id="sub">0</sub></p>
     
+        
+            <div class="submit-container">
+                <form id="inputForm" novalidate>
+                    <input type="text" id="userAnswer" placeholder="Answer">
+                    <button type="submit">Submit Answer</button>
+                </form>
+            </div>
+    
+            <div>
+                <h3>Score:</h3>
+                <p id="correct">Correct: 0</p>
+                <p id="incorrect">Incorrect: 0</p>
+        
+            </div>
         </div>
     </div>
-
-
-    <!-- <div style="text-align: left">
-        <h3 >Helpful Links:</h3>
-        <ul>
-            <li><p>What is hex</p></li>
-            <li><p>What is binary</p></li>
-            <li><p>Converting Hex & binary</p></li>
-            <li><p>Converting Binary & base 10</p></li>
-            <li><p>Base 10 & hex </p></li>
-        </ul>
-    </div> -->
+    
     
     <script src="index.js"></script>
 </body>
+
+
 </html>
