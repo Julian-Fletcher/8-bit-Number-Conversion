@@ -12,4 +12,4 @@ The specific modes are:
 5. Hexadecimal to Decimal
 6. Hexadecimal to Binary
 
-I will also host this on my portfolio website [here](https://julian-fletcher.github.io/) so it can easily be accessed. 
+You can play the game [here](https://julian-fletcher.github.io/projects/8bit/index.html).
